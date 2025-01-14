@@ -1,6 +1,7 @@
 package com.ufn.fortuneAPI.services;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -32,7 +33,6 @@ public class FortuneCookieService {
         entity.setName(createFortuneCookieDTO.name());
         entity.setCreatedAt(Instant.now());
         entity.setUpdatedAt(null);
-        entity.setId(UUID.randomUUID());
         entity.setFortunePhrase(fortunePhrase);
         
         return this.fortuneCookieRepository.save(entity).getId();
@@ -41,5 +41,17 @@ public class FortuneCookieService {
     public FortuneCookie getFortuneCookie(String id) {
         return this.fortuneCookieRepository.findById(UUID.fromString(id))
         .orElseThrow(() -> new ResourceNotFoundException("Fortune Phrase not found for ID: " + id));
+    }
+
+    public List<FortuneCookie> listFortuneCookie() {
+        return this.fortuneCookieRepository.findAll();
+    }
+
+    public void deleteFortuneCookie(String id) {
+        var fortuneCookieIsExist = this.fortuneCookieRepository.existsById(UUID.fromString(id));
+
+        if(fortuneCookieIsExist) {
+            this.fortuneCookieRepository.deleteById(UUID.fromString(id));
+        }
     }
 }

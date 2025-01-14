@@ -16,7 +16,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Version;
 
 @Entity
 @Table(name = "fortune_cookie")
@@ -38,12 +37,9 @@ public class FortuneCookie {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_phrase", nullable = false, unique = true)
     private FortunePhrase fortunePhrase;
-
-    @Version
-    private Integer version;
 
     public FortuneCookie() {
     }
