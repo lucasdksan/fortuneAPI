@@ -17,7 +17,7 @@ import com.ufn.fortuneAPI.entities.FortuneCookie;
 import com.ufn.fortuneAPI.services.FortuneCookieService;
 
 @RestController
-@RequestMapping("/v1/fortune-cookie")
+@RequestMapping("/api/biscoitos")
 public class FortuneCookieController {
     private FortuneCookieService fortuneCookieService;
 
@@ -45,7 +45,7 @@ public class FortuneCookieController {
         return ResponseEntity.ok(listFortuneCookie);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteFortuneCookie(@PathVariable("id") String id) {
         this.fortuneCookieService.deleteFortuneCookie(id);
         return ResponseEntity.noContent().build();

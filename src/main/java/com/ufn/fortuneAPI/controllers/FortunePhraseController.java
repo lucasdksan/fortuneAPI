@@ -19,7 +19,7 @@ import com.ufn.fortuneAPI.entities.FortunePhrase;
 import com.ufn.fortuneAPI.services.FortunePhraseService;
 
 @RestController
-@RequestMapping("/v1/fortune-phrase")
+@RequestMapping("/api/frases")
 public class FortunePhraseController {
     private FortunePhraseService fortunePhraseService;
 
@@ -47,13 +47,13 @@ public class FortunePhraseController {
         return ResponseEntity.ok(listFortunePhrase);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Void> updateFortunePhrase(@PathVariable("id") String id, @RequestBody UpdateFortunePhraseDTO body){
         this.fortunePhraseService.updateFortunePhrase(id, body);
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteFortunePhrase(@PathVariable("id") String id) {
         this.fortunePhraseService.deleteFortunePhrase(id);
         return ResponseEntity.noContent().build();

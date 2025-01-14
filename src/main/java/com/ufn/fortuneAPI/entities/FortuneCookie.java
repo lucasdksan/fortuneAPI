@@ -37,8 +37,8 @@ public class FortuneCookie {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_phrase", nullable = false, unique = true)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_phrase", nullable = true, unique = true)
     private FortunePhrase fortunePhrase;
 
     public FortuneCookie() {

@@ -48,9 +48,9 @@ public class FortuneCookieService {
     }
 
     public void deleteFortuneCookie(String id) {
-        var fortuneCookieIsExist = this.fortuneCookieRepository.existsById(UUID.fromString(id));
-
-        if(fortuneCookieIsExist) {
+        var fortuneCookie = this.fortuneCookieRepository.findById(UUID.fromString(id));
+    
+        if (fortuneCookie.isPresent()) {
             this.fortuneCookieRepository.deleteById(UUID.fromString(id));
         }
     }
